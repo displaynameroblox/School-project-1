@@ -1,0 +1,9 @@
+{
+    "name": "school-project-group-site",
+    "version": "1.0.0",
+    "description": "Group website for projects, studies, and school locations",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    }
+}
