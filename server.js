@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 const PUBLIC_DIR = path.join(__dirname, 'public');
 
 const mimeTypes = {
@@ -14,7 +15,8 @@ const mimeTypes = {
   '.jpg': 'image/jpeg',
   '.jpeg': 'image/jpeg',
   '.svg': 'image/svg+xml',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
+  '.pdf': 'application/pdf'
 };
 
 const server = http.createServer((req, res) => {
@@ -37,8 +39,17 @@ const server = http.createServer((req, res) => {
   fs.readFile(filePath, (err, content) => {
     if (err) {
       if (err.code === 'ENOENT') {
-        res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
-        res.end('Page not found');
+        const notFoundPath = path.join(PUBLIC_DIR, '404.html');
+        fs.readFile(notFoundPath, (notFoundErr, notFoundContent) => {
+          if (notFoundErr) {
+            res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+            res.end('Page not found');
+            return;
+          }
+
+          res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+          res.end(notFoundContent);
+        });
       } else {
         res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
         res.end('Server error');
@@ -54,6 +65,7 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+server.listen(PORT, HOST, () => {
+  console.log(`Server running at http://${HOST}:${PORT}`);
+  console.log(`Local access: http://localhost:${PORT}`);
 });

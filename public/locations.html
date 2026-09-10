@@ -15,24 +15,29 @@
         <div class="container nav-wrap">
             <div class="brand">
                 <div class="brand-mark">SG</div>
-                <span>School Group</span>
+                <span data-i18n="site-name">School Group</span>
+            </div>
+            <div class="toolbar" aria-label="Site settings">
+                <button class="toggle-button" id="language-toggle" type="button" aria-label="Switch to Arabic">AR</button>
+                <button class="toggle-button" id="theme-toggle" type="button" aria-label="Switch to dark mode">🌙</button>
             </div>
             <nav class="main-nav" aria-label="Main navigation">
-                <a href="/index.html">Projects & Studies</a>
-                <a href="/about.html">About Us</a>
-                <a class="active" href="/locations.html">Where We Are</a>
+                <a href="/index.html" data-i18n="nav-home">Projects & Studies</a>
+                <a href="/projects.html" data-i18n="nav-projects">Projects</a>
+                <a href="/about.html" data-i18n="nav-about">About Us</a>
+                <a class="active" href="/locations.html" data-i18n="nav-locations">Where We Are</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="page-hero">
+        <section class="page-hero reveal">
             <div class="container narrow">
-                <p class="eyebrow">Our spaces</p>
+                <p class="eyebrow">Our school</p>
                 <h1>Where learning happens.</h1>
                 <p class="lead">
-                    We connect through classroom spaces, labs, school communities, and shared study areas
-                    where ideas can grow.
+                    Our community is inspired by the learning environment at مدارس الأقصى الأهلية والعالمية,
+                    where academic growth, creativity, and student development are encouraged every day.
                 </p>
             </div>
         </section>
@@ -40,22 +45,33 @@
         <section class="section">
             <div class="container">
                 <div class="card-grid three-up">
-                    <article class="location-card">
-                        <span class="tag">Main campus</span>
-                        <h3>Central School</h3>
-                        <p>Home base for planning meetings, student collaboration, and core project work.</p>
+                    <article class="location-card reveal">
+                        <span class="tag">School</span>
+                        <h3>مدارس الأقصى الأهلية والعالمية</h3>
+                        <p>
+                            A well-known private school community focused on quality education, student success,
+                            and an inspiring learning environment for future growth.
+                        </p>
+                        <p><strong>Website:</strong> <a href="https://www.alaqsa.edu.sa/home" target="_blank" rel="noopener noreferrer">Alaqsa School</a></p>
+                        <p><strong>Email:</strong> info@alaqsa.edu.sa</p>
                     </article>
 
-                    <article class="location-card">
-                        <span class="tag">Innovation hub</span>
-                        <h3>STEM Lab</h3>
-                        <p>Focused space for experiments, prototypes, and analysis-driven study work.</p>
+                    <article class="location-card reveal">
+                        <span class="tag">Learning focus</span>
+                        <h3>Academic excellence</h3>
+                        <p>
+                            The school promotes strong study habits, modern teaching methods, and a culture of
+                            discipline, curiosity, and achievement.
+                        </p>
                     </article>
 
-                    <article class="location-card">
-                        <span class="tag">Community space</span>
-                        <h3>Learning Center</h3>
-                        <p>Shared area for workshops, presentations, mentorship, and group sessions.</p>
+                    <article class="location-card reveal">
+                        <span class="tag">Student growth</span>
+                        <h3>Skills & character</h3>
+                        <p>
+                            Beyond the classroom, students are encouraged to develop confidence, teamwork,
+                            communication, and leadership skills for the future.
+                        </p>
                     </article>
                 </div>
             </div>
@@ -63,11 +79,12 @@
 
         <section class="section alt-bg">
             <div class="container narrow">
-                <div class="text-block">
+                <div class="text-block reveal">
                     <h2>School connections</h2>
                     <p>
-                        Our work is shaped by the schools, mentors, and communities that support us. We aim to
-                        build strong connections between learning spaces, students, and practical growth.
+                        Our work is shaped by the learning culture and support systems that surround us. We value
+                        strong educational communities, meaningful mentorship, and the role of schools in helping
+                        students grow into capable, confident people.
                     </p>
                 </div>
             </div>
@@ -76,8 +93,8 @@
 
     <footer class="site-footer">
         <div class="container footer-wrap">
-            <p>© <span id="year"></span> School Group</p>
-            <a href="/locations.html">Locations</a>
+            <p>© <span id="year"></span> <span data-i18n="site-name">School Group</span></p>
+            <a href="/locations.html" data-i18n="nav-locations">Where We Are</a>
         </div>
     </footer>
 

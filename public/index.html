@@ -15,42 +15,51 @@
       <div class="container nav-wrap">
         <div class="brand">
           <div class="brand-mark">SG</div>
-          <span>School Group</span>
+          <span data-i18n="site-name">School Group</span>
+        </div>
+        <div class="toolbar" aria-label="Site settings">
+          <button class="toggle-button" id="language-toggle" type="button" aria-label="Switch to Arabic">AR</button>
+          <button class="toggle-button" id="theme-toggle" type="button" aria-label="Switch to dark mode">🌙</button>
         </div>
         <nav class="main-nav" aria-label="Main navigation">
-          <a class="active" href="/index.html">Projects & Studies</a>
-          <a href="/about.html">About Us</a>
-          <a href="/locations.html">Where We Are</a>
+          <a class="active" data-i18n="nav-home" href="/index.html">Projects & Studies</a>
+          <a href="/projects.html" data-i18n="nav-projects">Projects</a>
+          <a href="/about.html" data-i18n="nav-about">About Us</a>
+          <a href="/locations.html" data-i18n="nav-locations">Where We Are</a>
         </nav>
       </div>
     </header>
 
     <main>
-      <section class="hero hero-projects">
+      <section class="hero hero-projects reveal">
         <div class="container hero-grid">
           <div>
-            <p class="eyebrow">Learning together</p>
-            <h1>Projects, experiments, and growth.</h1>
-            <p class="lead">
+            <p class="eyebrow" data-i18n="hero-eyebrow">Learning together</p>
+            <h1 data-i18n="hero-title">Projects, experiments, and growth.</h1>
+            <p class="lead" data-i18n="hero-lead">
               We explore ideas, build useful tools, and share knowledge through research,
               collaborations, and hands-on study projects.
             </p>
             <div class="hero-actions">
-              <a class="button primary" href="#projects">View projects</a>
-              <a class="button secondary" href="/about.html">Meet the team</a>
+              <a class="button primary" data-i18n="view-projects" href="/projects.html">View projects</a>
+              <a class="button secondary" data-i18n="meet-team" href="/about.html">Meet the team</a>
+            </div>
+            <div class="status-panel" aria-live="polite">
+              <span class="status-badge"><span class="status-dot"></span><span data-i18n="tool-available">Online</span></span>
+              <span id="live-clock">--:--:--</span>
             </div>
           </div>
           <div class="hero-panel">
-            <div class="stat-card">
-              <strong>12+</strong>
+            <div class="stat-card reveal">
+              <strong data-count="12" data-suffix="+">0</strong>
               <span>Active initiatives</span>
             </div>
-            <div class="stat-card">
-              <strong>4</strong>
+            <div class="stat-card reveal">
+              <strong data-count="4">0</strong>
               <span>Study paths</span>
             </div>
-            <div class="stat-card">
-              <strong>100%</strong>
+            <div class="stat-card reveal">
+              <strong data-count="100" data-suffix="%">0</strong>
               <span>Team-driven learning</span>
             </div>
           </div>
@@ -59,13 +68,13 @@
 
       <section id="projects" class="section">
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading reveal">
             <p class="eyebrow">What we build</p>
-            <h2>Current projects</h2>
+            <h2 data-i18n="section-projects">Current projects</h2>
           </div>
 
           <div class="card-grid three-up">
-            <article class="info-card">
+            <article class="info-card reveal">
               <span class="tag">Web</span>
               <h3>Campus portal</h3>
               <p>
@@ -74,7 +83,7 @@
               </p>
             </article>
 
-            <article class="info-card">
+            <article class="info-card reveal">
               <span class="tag">Research</span>
               <h3>Digital learning lab</h3>
               <p>
@@ -83,7 +92,7 @@
               </p>
             </article>
 
-            <article class="info-card">
+            <article class="info-card reveal">
               <span class="tag">Community</span>
               <h3>Volunteer outreach</h3>
               <p>
@@ -95,27 +104,47 @@
         </div>
       </section>
 
+      <section class="section">
+        <div class="container">
+          <div class="section-heading reveal">
+            <p class="eyebrow">Research library</p>
+            <h2>Featured study</h2>
+          </div>
+
+          <article class="info-card reveal">
+            <span class="tag">Research · العربية</span>
+            <h3>الذكاء الاصطناعي في قطاع الإنتاج والتصنيع</h3>
+            <p>
+              تقرير استقصائي حول دور الذكاء الاصطناعي والثورة الصناعية الرابعة في تحسين
+              الكفاءة التشغيلية والإنتاجية وجودة التصنيع، مع أمثلة على الرؤية الحاسوبية،
+              الصيانة التنبؤية، والتوائم الرقمية.
+            </p>
+            <a class="button secondary" href="/research/ai-production-arabic-report.pdf">Read the paper</a>
+          </article>
+        </div>
+      </section>
+
       <section class="section alt-bg">
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading reveal">
             <p class="eyebrow">How we learn</p>
-            <h2>Study tracks</h2>
+            <h2 data-i18n="section-tracks">Study tracks</h2>
           </div>
 
           <div class="list-grid">
-            <div class="study-item">
+            <div class="study-item reveal">
               <h3>Technology & Software</h3>
               <p>Exploring code, product thinking, and practical digital tools used in real teams.</p>
             </div>
-            <div class="study-item">
+            <div class="study-item reveal">
               <h3>Science & Research</h3>
               <p>Investigating experiments, data collection, and evidence-based problem solving.</p>
             </div>
-            <div class="study-item">
+            <div class="study-item reveal">
               <h3>Design & Communication</h3>
               <p>Improving visual storytelling, user experience, and how ideas are shared clearly.</p>
             </div>
-            <div class="study-item">
+            <div class="study-item reveal">
               <h3>Leadership & Teamwork</h3>
               <p>Strengthening collaboration, planning, and decision-making across projects.</p>
             </div>
@@ -126,8 +155,8 @@
 
     <footer class="site-footer">
       <div class="container footer-wrap">
-        <p>© <span id="year"></span> School Group</p>
-        <a href="/index.html">Projects & Studies</a>
+      <p>© <span id="year"></span> <span data-i18n="site-name">School Group</span></p>
+      <a href="/index.html" data-i18n="footer-link">Projects & Studies</a>
       </div>
     </footer>
 
