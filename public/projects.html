@@ -36,20 +36,41 @@
       <section class="section">
         <div class="container">
           <div class="section-heading reveal"><p class="eyebrow">Available now</p><h2>Projects &amp; studies</h2></div>
-          <div class="card-grid three-up">
-            <a class="info-card reveal card-link" href="./project-relife2001.html">
+          <div class="browse-controls reveal">
+            <label class="search-field" for="project-search">
+              <span>Search projects and studies</span>
+              <input id="project-search" type="search" placeholder="Search by title, type, or topic..." autocomplete="off">
+            </label>
+            <div class="filter-wrap">
+              <button class="button secondary filter-button" id="filter-toggle" type="button" aria-expanded="false" aria-controls="project-filters">
+                Filter
+              </button>
+              <div class="filter-menu" id="project-filters" hidden>
+                <label for="project-type">Show</label>
+                <select id="project-type">
+                  <option value="all">Everything</option>
+                  <option value="project">Projects</option>
+                  <option value="study">Studies</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <p class="results-summary" id="results-summary" aria-live="polite">Showing 2 items</p>
+          <div class="card-grid three-up" id="project-list">
+            <a class="info-card reveal card-link searchable-card" data-type="project" href="./project-relife2001.html">
               <span class="tag">Project</span>
               <h3>Project ReLife 2001</h3>
               <p>A story-based roleplay experience set in 2000s New York City, rebuilt on a cleaner and more scalable foundation.</p>
               <span class="card-link-label">View project →</span>
             </a>
-            <a class="info-card reveal card-link" href="./research/ai-production-arabic-report.html">
+            <a class="info-card reveal card-link searchable-card" data-type="study" href="./research/ai-production-arabic-report.html">
               <span class="tag">Study · العربية</span>
               <h3>AI in Production &amp; Manufacturing</h3>
               <p>An Arabic research paper on how artificial intelligence improves operational efficiency, quality, and manufacturing productivity.</p>
               <span class="card-link-label">Read study →</span>
             </a>
           </div>
+          <p class="empty-results" id="empty-results" hidden>No projects or studies match your search.</p>
         </div>
       </section>
     </main>

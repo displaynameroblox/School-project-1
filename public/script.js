@@ -156,17 +156,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealItems.forEach((item) => observer.observe(item));
 
-    const liveClock = document.getElementById('live-clock');
-    if (liveClock) {
-        const updateClock = () => {
-            const now = new Date();
-            liveClock.textContent = new Intl.DateTimeFormat(document.documentElement.lang === 'ar' ? 'ar-SA' : 'en-US', {
-                hour: 'numeric',
-                minute: '2-digit',
-                second: '2-digit'
-            }).format(now);
-        };
-        updateClock();
-        setInterval(updateClock, 1000);
+    const searchInput = document.getElementById('project-search');
+    const filterToggle = document.getElementById('filter-toggle');
+    const filterMenu = document.getElementById('project-filters');
+    const typeSelect = document.getElementById('project-type');
+    const projectCards = [...document.querySelectorAll('.searchable-card')];
+    const resultsSummary = document.getElementById('results-summary');
+    const emptyResults = document.getElementById('empty-results');
+
+    const requestedType = new URLSearchParams(window.location.search).get('type');
+    if (typeSelect && (requestedType === 'project' || requestedType === 'study')) {
+        typeSelect.value = requestedType;
+        if (filterMenu) {
+            filterMenu.hidden = false;
+        }
+        filterToggle?.setAttribute('aria-expanded', 'true');
     }
+
+    const filterProjects = () => {
+        const query = searchInput?.value.trim().toLowerCase() || '';
+        const selectedType = typeSelect?.value || 'all';
+        let visibleCount = 0;
+
+        projectCards.forEach((card) => {
+            const matchesQuery = card.textContent.toLowerCase().includes(query);
+            const matchesType = selectedType === 'all' || card.dataset.type === selectedType;
+            const isVisible = matchesQuery && matchesType;
+            card.hidden = !isVisible;
+            if (isVisible) {
+                visibleCount += 1;
+            }
+        });
+
+        if (resultsSummary) {
+            resultsSummary.textContent = `Showing ${visibleCount} ${visibleCount === 1 ? 'item' : 'items'}`;
+        }
+        if (emptyResults) {
+            emptyResults.hidden = visibleCount !== 0;
+        }
+    };
+
+    searchInput?.addEventListener('input', filterProjects);
+    typeSelect?.addEventListener('change', filterProjects);
+    filterToggle?.addEventListener('click', () => {
+        const isOpen = filterMenu?.hidden === false;
+        if (filterMenu) {
+            filterMenu.hidden = isOpen;
+        }
+        filterToggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+    filterProjects();
+
 });
