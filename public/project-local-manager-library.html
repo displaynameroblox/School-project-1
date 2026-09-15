@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Local Manager Library | School Group</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header"><div class="container nav-wrap"><div class="brand"><div class="brand-mark">SG</div><span data-i18n="site-name">School Group</span></div><div class="toolbar"><button class="toggle-button" id="language-toggle" type="button">AR</button><button class="toggle-button" id="theme-toggle" type="button">🌙</button></div><nav class="main-nav"><a href="./index.html" data-i18n="nav-home">Projects &amp; Studies</a><a class="active" href="./projects.html" data-i18n="nav-projects">Projects</a><a href="./about.html" data-i18n="nav-about">About Us</a><a href="./locations.html" data-i18n="nav-locations">Where We Are</a></nav></div></header>
+    <main>
+      <section class="project-page-hero reveal"><div class="container"><div class="project-hero-grid"><h1 class="project-title">Local Manager Library</h1><p class="project-subtitle">Luau · toolkit</p></div></div></section>
+      <section class="section"><div class="container narrow"><div class="text-block project-highlight reveal"><p class="eyebrow">Project</p><h2>A practical toolkit for Roblox workflows.</h2><p>Local Manager Library is a modular Luau toolkit for Roblox executor environments. It places a consistent API over local file operations, HTTP downloads, HTML-to-GUI conversion, media playback, instance saving, workspace organization, and system diagnostics.</p><p>The library is designed to make larger Luau applications easier to build: an app can ask the manager to create a file, fetch a resource, or turn an HTML document into UI without rewriting executor-specific plumbing for every feature.</p><div class="hero-actions"><a class="button primary" href="https://github.com/displaynameroblox/local-manager-library" target="_blank" rel="noreferrer">View source on GitHub</a></div></div></div></section>
+      <section class="section alt-bg"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Core modules</p><h2>What it provides</h2></div><div class="card-grid three-up"><article class="info-card reveal"><span class="tag">Files</span><h3>Safe file workflows</h3><p>Create, move, delete, and restore workspace files with automatic undo backups. Deleted files can be restored from a matching <code>.undo</code> backup.</p></article><article class="info-card reveal"><span class="tag">Network</span><h3>Downloads &amp; requests</h3><p>Wrap GET and POST request flows, custom headers, and resource downloads behind one consistent manager API.</p></article><article class="info-card reveal"><span class="tag">UI</span><h3>HTML-to-GUI</h3><p>Translate familiar HTML elements and inline styles into native Roblox GUI objects, including frames, buttons, inputs, labels, images, and scrolling lists.</p></article><article class="info-card reveal"><span class="tag">Media</span><h3>Audio &amp; video</h3><p>Provide native Sound playback and experimental VideoFrame support, including folder-level batch audio playback.</p></article><article class="info-card reveal"><span class="tag">Instances</span><h3>Save and organize</h3><p>Save raw content as supported Roblox instances and keep generated scripts and assets inside a managed script folder.</p></article><article class="info-card reveal"><span class="tag">Diagnostics</span><h3>Environment profiling</h3><p>Inspect executor detection, filesystem access, HTTP support, GUI and Drawing capabilities, and available memory.</p></article></div></div></section>
+      <section class="section"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Architecture</p><h2>Designed for inconsistent runtimes</h2></div><div class="list-grid"><article class="text-block reveal"><h3>Compatibility layer</h3><p>The library sits above executor-specific globals such as <code>writefile</code>, <code>request</code>, and <code>Drawing.new</code>. It gives applications a shared interface instead of making every feature handle each runtime separately.</p><p>Its target environment expects a Luau runtime with protected calls, isolated file storage, HTTP access, and Roblox GUI or Drawing APIs.</p></article><article class="text-block reveal"><h3>Protected operations</h3><p>Operations are wrapped in protected calls and return descriptive status messages. That makes failures visible to the calling application while keeping file, network, and UI helpers modular.</p><p>The result is a reusable foundation for tools that need persistence, downloads, generated interfaces, and diagnostics in one project.</p></article></div></div></section>
+      <section class="section alt-bg"><div class="container"><div class="section-heading reveal"><p class="eyebrow">Getting started</p><h2>Load the module, then call the manager</h2><p class="lead">These examples show the public API shape. Check the repository for the latest implementation.</p></div><div class="code-grid"><article class="code-card reveal"><span class="tag">Load</span><h3>Fetch the library</h3><pre><code>local manager = loadstring(game:HttpGet("https://raw.githubusercontent.com/displaynameroblox/localmaner/main/localmaner.lua"))()</code></pre><div class="code-output"><span>Expected result</span><code>manager → library table loaded</code></div><p>The loader returns the manager table. The library also runs its environment diagnostics during startup.</p></article><article class="code-card reveal"><span class="tag">Files</span><h3>Create and move content</h3><pre><code>local result = manager.new("config.json", '{"theme":"neon"}')
+print(result)
+local moved = manager.move("config.json", "settings/config.json")
+print(moved)</code></pre><div class="code-output"><span>Expected output</span><code>file created successfully
+file moved successfully</code></div><p><code>new</code> writes content, while <code>move</code> relocates an existing file.</p></article></div></div></section>
+      <section class="section"><div class="container"><div class="section-heading reveal"><p class="eyebrow">API examples</p><h2>Common workflows</h2></div><div class="code-grid"><article class="code-card reveal"><span class="tag">Undo</span><h3>Delete safely and restore</h3><pre><code>local deleted = manager.dfile("config.json", false)
+print(deleted)
+local restored = manager.dfile("config.json", true, "config.json.undo")
+print(restored)</code></pre><div class="code-output"><span>Expected output</span><code>file deleted successfully, undo backup created at: config.json.undo
+file restored successfully from undo backup</code></div><p>Deletion creates an undo backup; passing <code>true</code> restores it.</p></article><article class="code-card reveal"><span class="tag">Network</span><h3>Download a resource</h3><pre><code>local result = manager.download(
+  "https://example.com/data.json",
+  "data.json",
+  "GET"
+)
+print(result)</code></pre><div class="code-output"><span>Expected output</span><code>file downloaded successfully</code></div><p>The method also accepts <code>POST</code> and an optional headers table. Network failures return a descriptive error string instead.</p></article><article class="code-card reveal"><span class="tag">HTML UI</span><h3>Convert HTML into GUI</h3><pre><code>manager.new("panel.html", [[
+&lt;div style="background-color: rgb(40, 40, 40); width: 400; height: 300;"&gt;
+  &lt;h1 style="color: white;"&gt;Welcome&lt;/h1&gt;
+  &lt;button style="color: white;"&gt;Open&lt;/button&gt;
+&lt;/div&gt;
+]])
+local panel = manager.html(nil, true, "panel.html", true)</code></pre><div class="code-output"><span>Expected result</span><code>panel → Roblox GUI instance (Frame)</code></div><p>HTML elements map to Roblox GUI objects such as frames, buttons, inputs, labels, images, and lists.</p></article><article class="code-card reveal"><span class="tag">Diagnostics</span><h3>Inspect capabilities</h3><pre><code>local systemInfo = manager.nodefecth()
+local capabilities = manager.checkSaveasCapabilities()
+print(systemInfo)
+print(capabilities.Sound)</code></pre><div class="code-output"><span>Representative output</span><code>systemInfo → capability report table
+true  -- if Sound saving is supported</code></div><p><code>nodefecth</code> checks executor, filesystem, HTTP, GUI, Drawing, and memory capabilities. The exact table fields depend on the current runtime.</p></article></div></div></section>
+    </main>
+    <footer class="site-footer"><div class="container footer-wrap"><p>© <span id="year"></span> <span data-i18n="site-name">School Group</span></p><a href="./projects.html" data-i18n="nav-projects">Projects</a></div></footer><script src="./script.js"></script>
+  </body>
+</html>
